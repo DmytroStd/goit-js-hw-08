@@ -10,12 +10,8 @@ const STORAGE_KEY = 'feedback-form-state';
 
 populateTextarea();
 
-let formData = {
-    // email: email.value,
-    // textarea: textarea.value,
-}
+let formData = {}
 
-//refs.email.addEventListener('input', throttle(onEmailInput, 500));
 refs.form.addEventListener('input', throttle(e => {
 formData= {email: refs.email.value, textarea: refs.textarea.value}
 localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
@@ -34,13 +30,21 @@ refs.form.addEventListener('submit', e => {
 });
 
 function populateTextarea() {
+    try {
     let savedMassege = localStorage.getItem(STORAGE_KEY);
-
-    let localData = JSON.parse(savedMassege)
-    if (localData) {
-        refs.email.value = localData.email;
-        refs.textarea.value = localData.textarea;
+    let formData = JSON.parse(savedMassege)
+        if (formData) {
+        refs.email.value = formData.email;
+        refs.textarea.value = formData.textarea;
+        // return formData = localData;
     }
+        
+    }
+    catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+    };   
+    
 }
        // formData = JSON.parse(savedMassege);
     // } else if (refs.email.value == '' && refs.textarea.value == '') {
