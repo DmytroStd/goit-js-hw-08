@@ -28,7 +28,7 @@ form.addEventListener('submit', e => {
     }
     console.log({
       email: email.value,
-      textarea:textarea.value
+      textarea: textarea.value
     })
     refs.form.reset();
     localStorage.removeItem(STORAGE_KEY)
