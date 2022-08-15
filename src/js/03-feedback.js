@@ -17,17 +17,6 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
 //  console.log(formData);
 }, 500));
 
-refs.form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!refs.email.value || !refs.textarea.value) {
-        alert('заполните форму полностью')
-        return
-    }
-    console.log(formData)
-    refs.form.reset();
-    localStorage.removeItem(STORAGE_KEY)
-});
-
 const load = key => {
   try {
     const localData = localStorage.getItem(key);
@@ -44,6 +33,16 @@ if (formData) {
   refs.textarea.value = formData.textarea;
 }
 
+refs.form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!refs.email.value || !refs.textarea.value) {
+        alert('заполните форму полностью')
+        return
+    }
+    console.log(formData)
+    refs.form.reset();
+    localStorage.removeItem(STORAGE_KEY)
+});
 // function populateTextarea() {
 //     try {
 //     let savedMassege = localStorage.getItem(STORAGE_KEY);
@@ -52,16 +51,28 @@ if (formData) {
 //         refs.email.value = formData.email;
 //         refs.textarea.value = formData.textarea;
 //         // return formData = localData;
-//     }
-        
+//     }       
 //     }
 //     catch (error) {
 //     console.log(error.name);
 //     console.log(error.message);
-//     };   
-    
+//     };     
 // }
 
+/////////////////////////////////////////////////////
+
+// let formData = {
+//     email: refs.email.value,
+//     textarea: refs.textarea.value,
+// }
+// const save = (STORAGE_KEY, formData) => {
+//   try {
+//     const localData = JSON.stringify(formData);
+//     localStorage.setItem(STORAGE_KEY, localData);
+//   } catch (error) {
+//     console.error("Set state error: ", error.message);
+//   }
+// };
 //////////////////////////////////////////////////////
    // const load = STORAGE_KEY => {
 //     try {
